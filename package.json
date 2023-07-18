@@ -11,9 +11,13 @@
     "url": "git+https://github.com/vladimir40in/frontend-project-46.git"
   },
   "author": "",
+  "type": "module",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/vladimir40in/frontend-project-46/issues"
   },
-  "homepage": "https://github.com/vladimir40in/frontend-project-46#readme"
+  "homepage": "https://github.com/vladimir40in/frontend-project-46#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
 }
