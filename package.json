@@ -19,5 +19,8 @@
   "homepage": "https://github.com/vladimir40in/frontend-project-46#readme",
   "dependencies": {
     "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "eslint": "^8.45.0"
   }
 }
