@@ -11,7 +11,7 @@ const arrangeList = (list) => {
 return `{\n${turnList}\n}`;
 };
 
-const genDiff = (o1, o2) => {
+export const genDiff = (o1, o2) => {
   o1 = jsonToObject(o1);
   o2 = jsonToObject(o2);
     let result = [];
@@ -38,4 +38,7 @@ const genDiff = (o1, o2) => {
   }
      return arrangeList(result);
  };
+
+
   // console.log(genDiff('file1.json', 'file2.json'));
+
