@@ -1,7 +1,7 @@
 import { genDiff } from '../compareJsonAndYamlFiles.js';
 
 test('genDiff', () => {
-  expect(genDiff('../__fixtures__/file1_test.json', '../__fixtures__/file2_test.json')).toEqual(
+  expect(genDiff('../__fixtures__/filepath1_test.yml', '../__fixtures__/filepath2_test.yml')).toEqual(
 `{
   + cinco:true
   - cuatro:false
@@ -11,5 +11,3 @@ test('genDiff', () => {
     uno:he
 }`);
 });
-
-

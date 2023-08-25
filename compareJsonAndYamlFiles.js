@@ -1,10 +1,5 @@
-import fs from 'fs';
 import _ from "lodash";
-
-const jsonToObject = (file) => {
-  const readFile = fs.readFileSync(file, 'utf8');
-  return JSON.parse(readFile);
-};
+import { parseFile } from "./parsers.js";
 
 const arrangeList = (list) => {
   const turnList = list.map((item) => `${item}`).join('\n');
@@ -12,8 +7,9 @@ return `{\n${turnList}\n}`;
 };
 
 export const genDiff = (o1, o2) => {
-  o1 = jsonToObject(o1);
-  o2 = jsonToObject(o2);
+  o1 = parseFile(o1);
+  o2 = parseFile(o2);
+ 
     let result = [];
      const insertKeys = _.union(Object.keys(o1), Object.keys(o2));
      const sortInsertedKeys =_.sortBy(insertKeys);
@@ -40,5 +36,4 @@ export const genDiff = (o1, o2) => {
  };
 
 
-  // console.log(genDiff('file1.json', 'file2.json'));
 
