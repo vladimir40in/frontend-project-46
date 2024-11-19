@@ -2,7 +2,10 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/vladimir40in/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/vladimir40in/frontend-project-46/actions)",
-  "main": "gendiff.js",
+  "main": "./index.js",
+  "bin": {
+    "genDiff": "./bin/gendiff.js"
+  },
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
     "test:watch": "jest --watch",
@@ -20,11 +23,12 @@
   },
   "homepage": "https://github.com/vladimir40in/frontend-project-46#readme",
   "dependencies": {
-    "commander": "^11.0.0",
+    "commander": "^11.1.0",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.14",
     "eslint": "^8.47.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.28.1",

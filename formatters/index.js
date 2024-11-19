@@ -1,0 +1,12 @@
+import { plainForm } from './plain.js';
+import { stylishForm } from './stylish.js';
+
+const formatters = {
+  plain: plainForm,
+  stylish: stylishForm,
+};
+
+export const getFormatter = (formatName = 'stylish') => {
+  return formatters[formatName] || formatters.stylish;
+};
+
