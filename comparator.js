@@ -21,7 +21,7 @@ const compareValues = (key, value1, value2) => {
   if (value1 !== value2) {
     return {
       key,
-      type: types.CHANGED, // type в остальных последним в списке
+      type: types.CHANGED, 
       oldValue: value1,
       value: value2    // newValue: value2
     };
@@ -54,7 +54,7 @@ const doIt = (o1, o2) => { // сравнение объектов и для ре
 
 export const genDiff = (file1, file2, formatName = 'stylish') => { 
   const o1 = parseFile(file1); //object
-  const o2 = parseFile(file2); //object
+  const o2 = parseFile(file2); 
   const diff = doIt(o1, o2);
   const formatter = getFormatter(formatName);
   return formatter(diff);
@@ -62,6 +62,7 @@ export const genDiff = (file1, file2, formatName = 'stylish') => {
 
  // Программа должна уметь работать с относительными и абсолютными 
  // путями до файлов (полезные функции: path.resolve() и process.cwd())
-// genDiff --format plain __fixtures__/file1.json __fixtures__/file1.json
+// genDiff --format plain __fixtures__/file1.json __fixtures__/file2.json
 // genDiff -f plain filepath1.yml filepath2.yml
 // genDiff -f plain __fixtures__/file1ForPlain.yaml __fixtures__/file2ForPlain.yaml
+// genDiff --format json __fixtures__/file1.json __fixtures__/file2.json

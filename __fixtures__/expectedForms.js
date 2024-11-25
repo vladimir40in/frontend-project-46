@@ -67,3 +67,120 @@ export const expectedJsonOutput =
     }
 }`;
 
+export const expectedJsonFormatOutput = 
+`[
+  {
+    "key": "common",
+    "type": "PARENT",
+    "children": [
+      {
+        "key": "follow",
+        "type": "ADDED",
+        "value": false
+      },
+      {
+        "key": "setting1",
+        "oldValue": "Value 1",
+        "type": "UNCHANGED"
+      },
+      {
+        "key": "setting2",
+        "oldValue": 200,
+        "type": "DELETED"
+      },
+      {
+        "key": "setting3",
+        "type": "CHANGED",
+        "oldValue": true,
+        "value": null
+      },
+      {
+        "key": "setting4",
+        "type": "ADDED",
+        "value": "blah blah"
+      },
+      {
+        "key": "setting5",
+        "type": "ADDED",
+        "value": {
+          "key5": "value5"
+        }
+      },
+      {
+        "key": "setting6",
+        "type": "PARENT",
+        "children": [
+          {
+            "key": "doge",
+            "type": "PARENT",
+            "children": [
+              {
+                "key": "wow",
+                "type": "CHANGED",
+                "oldValue": "",
+                "value": "so much"
+              }
+            ]
+          },
+          {
+            "key": "key",
+            "oldValue": "value",
+            "type": "UNCHANGED"
+          },
+          {
+            "key": "ops",
+            "type": "ADDED",
+            "value": "vops"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "group1",
+    "type": "PARENT",
+    "children": [
+      {
+        "key": "baz",
+        "type": "CHANGED",
+        "oldValue": "bas",
+        "value": "bars"
+      },
+      {
+        "key": "foo",
+        "oldValue": "bar",
+        "type": "UNCHANGED"
+      },
+      {
+        "key": "nest",
+        "type": "CHANGED",
+        "oldValue": {
+          "key": "value"
+        },
+        "value": "str"
+      }
+    ]
+  },
+  {
+    "key": "group2",
+    "oldValue": {
+      "abc": 12345,
+      "deep": {
+        "id": 45
+      }
+    },
+    "type": "DELETED"
+  },
+  {
+    "key": "group3",
+    "type": "ADDED",
+    "value": {
+      "deep": {
+        "id": {
+          "number": 45
+        }
+      },
+      "fee": 100500
+    }
+  }
+]`;
