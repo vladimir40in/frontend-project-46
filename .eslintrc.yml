@@ -3,17 +3,21 @@
 plugins:
   # https://github.com/jest-community/eslint-plugin-jest
   - jest
+  - fp
 
 # https://eslint.org/docs/user-guide/configuring#specifying-environments
 env:
   node: true
+  jest: true
+  es2020: true
 
 extends:
-  - 'airbnb-base'
-  - 'plugin:jest/recommended'
+  - airbnb-base
+  - "plugin:jest/recommended"
+  - "plugin:fp/recommended"
 
 parserOptions:
-  ecmaVersion: latest
+  ecmaVersion: 2020
 
 rules:
   no-console: 0
