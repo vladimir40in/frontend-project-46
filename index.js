@@ -1,2 +1,2 @@
-import { genDiff }  from "./comparator.js"; 
-export default genDiff;
+import { gendiff }  from "./comparator.js"; 
+export default gendiff;

@@ -52,7 +52,7 @@ const doIt = (o1, o2) => {
         return result;
   };
 
-export const genDiff = (file1, file2, formatName = 'stylish') => { 
+export const gendiff = (file1, file2, formatName = 'stylish') => { 
   const o1 = parseFile(file1);
   const o2 = parseFile(file2); 
   const diff = doIt(o1, o2);
