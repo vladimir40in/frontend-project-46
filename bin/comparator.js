@@ -1,6 +1,6 @@
 import _ from "lodash";
 import { parseFile } from "./parsers.js";
-import { getFormatter }  from "./formatters/index.js";
+import { getFormatter }  from "../formatters/index.js";
 
 const types = {
   ADDED: 'ADDED',

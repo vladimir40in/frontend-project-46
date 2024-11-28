@@ -1,4 +1,4 @@
-import { gendiff } from '../comparator.js';
+import  gendiff  from '../bin/index.js';
 import { expectedJsonOutput } from '../__fixtures__/expectedForms.js';
 
 test('genDiff(filePath1, filePath2, formatName)', () => {
