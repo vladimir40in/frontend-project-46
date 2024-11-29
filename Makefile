@@ -3,6 +3,6 @@ install:
 publish:
 	npm publish --dry-run	
 lint:
-	npx eslint
+	npx eslint --no-eslintrc --config .eslintrc.yml .
 test:
 	npm test

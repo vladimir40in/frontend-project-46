@@ -1,13 +1,13 @@
-import _ from "lodash";
-import { parseFile } from "./parsers.js";
-import { getFormatter }  from "../formatters/index.js";
+import _ from 'lodash';
+import { parseFile } from './parsers.js';
+import { getFormatter } from '../formatters/index.js';
 
 const types = {
   ADDED: 'ADDED',
   DELETED: 'DELETED',
   UNCHANGED: 'UNCHANGED',
   CHANGED: 'CHANGED',
-  PARENT: 'PARENT'
+  PARENT: 'PARENT',
 };
 
 const compareValues = (key, value1, value2) => {
@@ -15,24 +15,24 @@ const compareValues = (key, value1, value2) => {
     return {
       key,
       type: types.PARENT,
-      children: doIt(value1, value2)
-  };
- }
+      children: doIt(value1, value2),
+    };
+  }
   if (value1 !== value2) {
     return {
       key,
-      type: types.CHANGED, 
+      type: types.CHANGED,
       oldValue: value1,
-      value: value2
+      value: value2,
     };
   }
-   return { key, oldValue: value1, type: types.UNCHANGED };
+  return { key, oldValue: value1, type: types.UNCHANGED };
 };
 
 const doIt = (o1, o2) => {
-  let result = [];
+  const result = [];
   const keys = _.union(Object.keys(o1), Object.keys(o2)).sort();
-  
+
   for (const key of keys) {
     if (!o1.hasOwnProperty(key)) {
       result.push({ key, type: types.ADDED, value: o2[key] });
@@ -49,13 +49,13 @@ const doIt = (o1, o2) => {
       }
     }
   }
-        return result;
-  };
+  return result;
+};
 
-export const gendiff = (file1, file2, formatName = 'stylish') => { 
+export const gendiff = (file1, file2, formatName = 'stylish') => {
   const o1 = parseFile(file1);
-  const o2 = parseFile(file2); 
+  const o2 = parseFile(file2);
   const diff = doIt(o1, o2);
   const formatter = getFormatter(formatName);
   return formatter(diff);
- };
+};

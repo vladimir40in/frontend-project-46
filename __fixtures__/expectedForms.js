@@ -1,5 +1,4 @@
-export const expectedPlainOutput = 
-`Property 'common.follow' was added with value: false
+export const expectedPlainOutput = `Property 'common.follow' was added with value: false
 Property 'common.setting2' was removed
 Property 'common.setting3' was updated. From true to null
 Property 'common.setting4' was added with value: 'blah blah'
@@ -11,8 +10,7 @@ Property 'group1.nest' was updated. From [complex value] to 'str'
 Property 'group2' was removed
 Property 'group3' was added with value: [complex value]`;
 
-export const expectedYamlOutput =
-`{
+export const expectedYamlOutput = `{
   - follow: false
     host: hexlet.io
   - proxy: 123.234.53.22
@@ -21,8 +19,7 @@ export const expectedYamlOutput =
   + verbose: true
 }`;
 
-export const expectedJsonOutput =
-`{
+export const expectedJsonOutput = `{
     common: {
       + follow: false
         setting1: Value 1
@@ -67,8 +64,7 @@ export const expectedJsonOutput =
     }
 }`;
 
-export const expectedJsonFormatOutput = 
-`[
+export const expectedJsonFormatOutput = `[
   {
     "key": "common",
     "type": "PARENT",
