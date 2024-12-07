@@ -10,12 +10,30 @@ const types = {
   PARENT: 'PARENT',
 };
 
+const sortToFlatArrOfObs = (o1, o2) => {
+  const keys = _.sortBy(_.union(Object.keys(o1), Object.keys(o2))); // sort -> _.sortBy
+  // новый отсортированный массив, не мутируя исходный
+  return _.flatMap(keys, (key) => { // _.flatMap вместо цикла for
+    if (!_.has(o1, key)) {
+      return [{ key, type: types.ADDED, value: o2[key] }]; // hasOwnProperty -> _.has
+    }
+    if (!_.has(o2, key)) {
+      return [{ key, oldValue: o1[key], type: types.DELETED }];
+    }
+    const value1 = o1[key];
+    const value2 = o2[key];
+
+    const comparedValues = compareValues(key, value1, value2);// _.isArray вместо Array.isArray
+    return _.isArray(comparedValues) ? comparedValues : [comparedValues];
+  }); // плоский массив объектов различий
+};
+
 const compareValues = (key, value1, value2) => {
   if (_.isObject(value1) && _.isObject(value2)) {
     return {
       key,
       type: types.PARENT,
-      children: doIt(value1, value2),
+      children: sortToFlatArrOfObs(value1, value2),
     };
   }
   if (value1 !== value2) {
@@ -29,33 +47,12 @@ const compareValues = (key, value1, value2) => {
   return { key, oldValue: value1, type: types.UNCHANGED };
 };
 
-const doIt = (o1, o2) => {
-  const result = [];
-  const keys = _.union(Object.keys(o1), Object.keys(o2)).sort();
-
-  for (const key of keys) {
-    if (!o1.hasOwnProperty(key)) {
-      result.push({ key, type: types.ADDED, value: o2[key] });
-    } else if (!o2.hasOwnProperty(key)) {
-      result.push({ key, oldValue: o1[key], type: types.DELETED });
-    } else {
-      const value1 = o1[key];
-      const value2 = o2[key];
-      const comparedValues = compareValues(key, value1, value2);
-      if (Array.isArray(comparedValues)) {
-        result.push(...comparedValues);
-      } else {
-        result.push(comparedValues);
-      }
-    }
-  }
-  return result;
-};
-
-export const gendiff = (file1, file2, formatName = 'stylish') => {
+const gendiff = (file1, file2, formatName = 'stylish') => {
   const o1 = parseFile(file1);
   const o2 = parseFile(file2);
-  const diff = doIt(o1, o2);
+  const diff = sortToFlatArrOfObs(o1, o2);
   const formatter = getFormatter(formatName);
   return formatter(diff);
 };
+
+export default gendiff;
