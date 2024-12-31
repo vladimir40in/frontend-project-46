@@ -23,23 +23,23 @@ const sortToFlatArrOfObs = (o1, o2) => {
     const value1 = o1[key];
     const value2 = o2[key];
 
-    const compareValues = (key, value1, value2) => {
-      if (_.isObject(value1) && _.isObject(value2)) {
+    const compareValues = (compareKey, compareValue1, compareValue2) => {
+      if (_.isObject(compareValue1) && _.isObject(compareValue2)) {
         return {
-          key,
+          key: compareKey,
           type: types.PARENT,
-          children: sortToFlatArrOfObs(value1, value2),
+          children: sortToFlatArrOfObs(compareValue1, compareValue2),
         };
       }
-      if (value1 !== value2) {
+      if (compareValue1 !== compareValue2) {
         return {
-          key,
+          key: compareKey,
           type: types.CHANGED,
-          oldValue: value1,
-          value: value2,
+          oldValue: compareValue1,
+          value: compareValue2,
         };
       }
-      return { key, oldValue: value1, type: types.UNCHANGED };
+      return { key: compareKey, oldValue: compareValue1, type: types.UNCHANGED };
     };
 
     const comparedValues = compareValues(key, value1, value2);// _.isArray вместо Array.isArray

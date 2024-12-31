@@ -18,8 +18,8 @@ const plainForm = (comparison, parent = '') => comparison.map((item) => {
     case 'ADDED':
       return `Property '${propertyName}' was added with value: ${formatValue(item.value)}`;
     case 'DELETED': {
-      const hasOtherChanges = comparison.some(otherItem => // есть ли OtherChanges для key
-        otherItem.key === item.key && otherItem.type !== 'DELETED');
+      const hasOtherChanges = comparison.some((otherItem) => otherItem.key === item.key && otherItem.type !== 'DELETED');
+
       if (!hasOtherChanges) {
         return `Property '${propertyName}' was removed`;
       }
