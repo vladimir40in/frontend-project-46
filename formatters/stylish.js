@@ -1,4 +1,4 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 
 const signMap = {
   ADDED: '+',
@@ -30,7 +30,7 @@ const makeIfValueObject = (piece, replacer, replacerCount, level) => {
   return piece;
 };
 
-export const stylishForm = (example, replacer = ' ', replacerCount = 4, level = 0) => {
+const stylishForm = (example, replacer = ' ', replacerCount = 4, level = 0) => {
   const result = example.map((item) => {
     const sign = signMap[item.type];
     const shifter = replacer.repeat((level + 1) * replacerCount - 2);
@@ -65,3 +65,4 @@ export const stylishForm = (example, replacer = ' ', replacerCount = 4, level = 
     `${replacer.repeat((level + 0) * replacerCount)}}`,
   ].join('\n');
 };
+export default stylishForm;

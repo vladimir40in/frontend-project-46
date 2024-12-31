@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import { parseFile } from './parsers.js';
-import { getFormatter } from '../formatters/index.js';
+import parseFile from './parsers.js';
+import getFormatter from '../formatters/index.js';
 
 const types = {
   ADDED: 'ADDED',
@@ -23,28 +23,28 @@ const sortToFlatArrOfObs = (o1, o2) => {
     const value1 = o1[key];
     const value2 = o2[key];
 
+    const compareValues = (key, value1, value2) => {
+      if (_.isObject(value1) && _.isObject(value2)) {
+        return {
+          key,
+          type: types.PARENT,
+          children: sortToFlatArrOfObs(value1, value2),
+        };
+      }
+      if (value1 !== value2) {
+        return {
+          key,
+          type: types.CHANGED,
+          oldValue: value1,
+          value: value2,
+        };
+      }
+      return { key, oldValue: value1, type: types.UNCHANGED };
+    };
+
     const comparedValues = compareValues(key, value1, value2);// _.isArray вместо Array.isArray
     return _.isArray(comparedValues) ? comparedValues : [comparedValues];
   }); // плоский массив объектов различий
-};
-
-const compareValues = (key, value1, value2) => {
-  if (_.isObject(value1) && _.isObject(value2)) {
-    return {
-      key,
-      type: types.PARENT,
-      children: sortToFlatArrOfObs(value1, value2),
-    };
-  }
-  if (value1 !== value2) {
-    return {
-      key,
-      type: types.CHANGED,
-      oldValue: value1,
-      value: value2,
-    };
-  }
-  return { key, oldValue: value1, type: types.UNCHANGED };
 };
 
 const gendiff = (file1, file2, formatName = 'stylish') => {

@@ -1,5 +1,5 @@
-import { plainForm } from './plain.js';
-import { stylishForm } from './stylish.js';
+import plainForm from './plain.js';
+import stylishForm from './stylish.js';
 
 const formatters = {
   plain: plainForm,
@@ -7,4 +7,6 @@ const formatters = {
   json: (data) => JSON.stringify(data, null, 2),
 };
 
-export const getFormatter = (formatName = 'stylish') => formatters[formatName] || formatters.stylish;
+const getFormatter = (formatName = 'stylish') => formatters[formatName] || formatters.stylish;
+
+export default getFormatter;
