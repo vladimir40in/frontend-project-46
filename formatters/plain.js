@@ -24,7 +24,7 @@ const plainForm = (comparison, parent = '') => comparison.map((item) => {
         return `Property '${propertyName}' was removed`;
       }
       return '';
-}
+    }
     default:
       return '';
   }
