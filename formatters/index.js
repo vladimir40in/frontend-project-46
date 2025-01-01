@@ -7,6 +7,7 @@ const formatters = {
   json: (data) => JSON.stringify(data, null, 2),
 };
 
-const getFormatter = (formatName = 'stylish') => formatters[formatName] || formatters.stylish;
+const getFormatter = (formatName = 'stylish') => formatters[formatName]
+|| formatters.stylish;
 
 export default getFormatter;
