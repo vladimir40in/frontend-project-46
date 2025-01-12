@@ -1,6 +1,13 @@
 import eslintPluginJest from 'eslint-plugin-jest';
 import eslintConfigAirbnb from 'eslint-config-airbnb-base';
 
+module.exports = {
+  env: {
+    node: true,
+    jest: true, // Для поддержки глобальных функций Jest
+  },
+};
+
 export default [
   {
     plugins: {
